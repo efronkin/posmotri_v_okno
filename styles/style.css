@@ -13,11 +13,11 @@ html {
   block-size: 100%;
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 18px;
   background-color: #1b1919;
   display: flex;
-
+  align-items: center;
 }
 
 h1,
@@ -42,11 +42,8 @@ ol {
 .content {
   display: flex;
   gap: 30px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 30px;
-  margin-right: 30px;
-  max-width: 1160px;
+  padding: 0 8px 0 30px;
+  min-height: 534px;
 }
 
 .search-form {
@@ -56,8 +53,9 @@ ol {
 
 .content__list {
   position: relative;
-  max-height: 294px;
-  overflow: hidden overlay;
+  min-width: 410px;
+  max-height: 302px;
+  overflow: hidden auto;
 }
 
 .content__list::-webkit-scrollbar {
@@ -74,8 +72,7 @@ ol {
 .content__details {
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  width: 405px;
+  justify-content: space-between;
 }
 
 .result__video-container {
@@ -83,7 +80,7 @@ ol {
   height: 386px;
   width: 711px;
   margin-top: 75px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .result__video {
@@ -94,42 +91,73 @@ ol {
 }
 
 .content__list-item:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .content__video-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: flex-start;
+  margin: 2px;
+  padding: 1px;
+}
+
+.content__card-link_current .content__video-card {
+  background-color: #545050;
 }
 
 .content__video-card-thumbnail {
   object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 107px;
+  width: 194px;
+  height: 103px;
 }
 
 .content__video-card-description-container {
-  width: 100%;
-  height: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+  overflow: hidden;
+}
+
+.content__video-card-description-container h2 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.content__video-card-description-container p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.content__video-card:hover .content__video-card-description-container {
+  text-decoration: underline;
+}
+
+.content__list-item:active .content__video-card-description-container {
+  text-decoration: none;
+}
+
+.content__list-item:active .content__video-card {
+  background-color: #545050;
 }
 
 .search-form__fieldset-title {
   font-weight: 400;
   font-size: 18px;
   line-height: 21.6px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
-.title{
-  font-family: 'Oswald', sans-serif;
+.title {
+  font-family: "Oswald", sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 75px;
   line-height: 70.5px;
 }
 
-.content__accent{
+.content__accent {
   color: #545050;
 }
 
@@ -138,12 +166,23 @@ ol {
   color: #fff;
 }
 
+.content__card-link:focus {
+  outline: none;
+}
+
+.content__card-link:focus-visible .content__video-card {
+  outline: 1px solid #fff;
+  border-radius: 0;
+  outline-offset: 1px;
+}
+
 .content__video-card-title {
   text-transform: uppercase;
-  font-family: 'Oswald';
+  font-family: "Oswald", sans-serif;
   font-weight: 700;
   font-size: 30px;
   line-height: 30px;
+  margin-top: 2px;
   margin-bottom: 6px;
 }
 
@@ -166,6 +205,38 @@ ol {
   white-space: nowrap;
 }
 
+.search-form__textfield {
+  height: 27px;
+  width: 225px;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fff transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: #fff;
+  appearance: none;
+}
+
+.search-form__textfield::placeholder {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+.search-form__textfield:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.search-form__textfield:active {
+  border-color: #fff;
+  outline: none;
+}
+
 .search-form__fieldset {
   border: none;
 }
@@ -185,55 +256,61 @@ ol {
 }
 
 label .search-form__pseudo-checkbox {
-  position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 19px;
   height: 19px;
   background-color: transparent;
   border: 1px solid #fff;
 }
 
-.search-form__textfield {
-  height: 27px;
-  width: 225px;
-  background-color: transparent;
-  border: 1px solid #fff;
-  border-right: none;
-  border-left: none;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  color: #fff;
-  appearance: none;
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  content: "";
+  min-inline-size: 15px;
+  min-block-size: 15px;
+  background-color: #fff;
 }
 
-.search-form__textfield::placeholder {
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-}
-
-.search-form__textfield:focus {
-  border: 1px solid #fff;
-  border-right: none;
-  border-left: none;
-  outline: none;
-}
-
-.search-form__label:has(.search-form__textfield:focus-visible) {
+.search-form__label:has(.search-form__checkbox:focus-visible) {
   outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
 }
 
 .button {
   cursor: pointer;
   background-color: transparent;
   border: 1px solid #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: inherit;
   font-weight: 700;
-  font-size: 18px;
+  font-size: inherit;
   line-height: 21.6px;
   color: #fff;
   appearance: none;
   height: 34px;
   text-align: center;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  text-decoration: none;
+  background-color: #545050;
 }
 
 .search-form__submit-button {
@@ -242,17 +319,6 @@ label .search-form__pseudo-checkbox {
 }
 
 .more-button {
-  width: 100%;
-}
-
-.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background-color: #fff;
-}
-
-.search-form__label:has(.search-form__checkbox:focus-visible) {
-  outline: 1px solid #fff;
-  border-radius: 0%;
+  width: 98%;
+  margin: 2px;
 }
