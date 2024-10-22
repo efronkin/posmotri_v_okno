@@ -1,1 +1,1 @@
-\git@github.com:efronkin/posmotri_v_okno.git
+git@github.com:efronkin/posmotri_v_okno.git
